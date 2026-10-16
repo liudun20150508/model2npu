@@ -1,0 +1,26 @@
+{
+  "note": "标定集 (AWQ 需要激活幅度, GPTQ 需要激活二阶统计 H=X^T X)。混合中英 + 代码, 覆盖不同激活分布。",
+  "calib": [
+    "端侧 NPU 上的大模型推理, 瓶颈通常在权重带宽而不是算力。",
+    "请解释一下 Transformer 里的多头注意力是怎么工作的。",
+    "量化到 4bit 之后, 分组尺度 group_size 越小精度越好, 但元数据开销越大。",
+    "KV Cache 在长上下文下会超过模型权重本身的体积, 所以需要 int8 甚至更激进的压缩。",
+    "The key idea of GPTQ is to compensate the quantization error of each column into the columns that are not yet quantized.",
+    "Activation-aware weight quantization (AWQ) searches a per-channel scale that protects the salient weights.",
+    "def rms_norm(x, w, eps=1e-6): return x / torch.sqrt(x.pow(2).mean(-1, keepdim=True) + eps) * w",
+    "for (int i = 0; i < N; ++i) { acc += (double)a[i] * (double)b[i]; }",
+    "在端侧设备上部署模型时, 内存占用和延迟指标往往比峰值算力更重要。",
+    "如果首 token 延迟是 200ms, 单 token 延迟是 8ms, 那么 128 个 token 的输出总共需要多久?",
+    "NPU 的 DMA 引擎在搬运权重的时候, 最好能连续访问 DRAM 的地址, 否则带宽利用率会掉得很厉害。",
+    "The vision encoder converts an image into 196 patch tokens plus one class token, which are then consumed by the language model."
+  ],
+  "eval": [
+    "把模型适配到迈特芯的 NPU 与 FPGA 原型时, 需要同时对齐算子数值和端到端性能指标。",
+    "量化误差最终会体现在 logits 上, 所以判据必须包含最终输出的对比, 不能只看单层误差。"
+  ],
+  "prompts": [
+    "你好，请用一句话介绍你自己。",
+    "用一句话解释什么是 KV Cache。",
+    "请把下面这句话翻译成英文：端侧推理需要考虑内存和带宽预算。"
+  ]
+}
