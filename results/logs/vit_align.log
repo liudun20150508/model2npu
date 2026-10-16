@@ -1,0 +1,26 @@
+/path/to/model2npu/src/mtx_vit.py:162: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  x = torch.from_numpy(np.asarray(img_hwc_uint8)).to(torch.float32) / 255.0
+im2col shape (196, 768)
+im2col row0[:6] [-1.8782 -1.8268 -1.7754 -1.7925 -1.8097 -1.7925]
+im2col row1[:6] [-2.0837 -2.0494 -2.0323 -2.0665 -2.0665 -2.0665]
+im2col row196 is patch row of last block [:6] [-1.2959 -1.3987 -1.1418 -1.039  -1.1589 -1.2445]
+device img floats 150528 expected 150528
+device img[:6] [-1.8782 -1.8268 -1.7754 -1.7925 -1.8097 -1.7925] max 2.640000104904175
+device img dtype f32 range -2.1007792949676514 2.640000104904175
+ref px[:6] [-1.8782 -1.8268 -1.7754 -1.7925 -1.8097 -1.7925] max 2.640000104904175
+embed: cos=1.000000 rel=0.000464 maxabs=0.00391 refmax=13.812 gotmax=13.812
+   per-row cos [0,1,100,195,196] [1.0, 1.0, 1.0, 1.0, 1.0]
+   ref row0[:4] [ 1.126  -0.2212 -2.209  -0.3977] got row0[:4] [ 1.126  -0.2212 -2.209  -0.3977]
+   ref row196[:4] [ 0.0436 -0.071  -1.416   0.1885] got row196[:4] [ 0.0436 -0.071  -1.416   0.1885]
+L0: cos=0.999999 rel=0.001213 maxabs=0.01562 refmax=15.344 gotmax=15.328
+   per-row cos [0,1,100,195,196] [1.0, 1.0, 1.0, 1.0, 1.0]
+   ref row0[:4] [ 0.1045  0.5825 -0.3726 -0.2627] got row0[:4] [ 0.105   0.583  -0.3721 -0.2639]
+   ref row196[:4] [-0.179   0.2024 -0.4521 -0.0386] got row196[:4] [-0.1788  0.2028 -0.4514 -0.0386]
+L6: cos=0.999991 rel=0.004252 maxabs=0.09375 refmax=11.227 gotmax=11.211
+   per-row cos [0,1,100,195,196] [1.0, 1.0, 1.0, 1.0, 1.0]
+   ref row0[:4] [-0.5635 -0.2568 -0.1382  0.8047] got row0[:4] [-0.5723 -0.2532 -0.1372  0.8042]
+   ref row196[:4] [-0.4639  0.1442 -0.0168  0.366 ] got row196[:4] [-0.4636  0.1433 -0.0167  0.3665]
+quant-sim top5 [258 259 203 157 332] [7.992 6.551 5.605 4.645 4.41 ]
+device    top5 [258 259 203 157 332] [8.008 6.617 5.527 4.762 4.527]
+device logits range -4.52734375 8.0078125
+quant-sim logits range -4.8125 7.9921875
