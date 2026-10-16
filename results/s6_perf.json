@@ -1,0 +1,267 @@
+{
+  "headline": {
+    "ttft_ms": 9.361977699999995,
+    "tpot_ms": 7.891218399999993,
+    "tokens_per_s": 126.72314328545271,
+    "decode_dram_bytes_per_token": 338819204.0,
+    "decode_macs_per_token": 495962880.0,
+    "cycles_total": 72750740.5,
+    "macs_total": 7434217728,
+    "pcie_bytes": 9804288,
+    "sram_peak_bytes": 286720
+  },
+  "by_kind": {
+    "EMBED": {
+      "cycles": 4465.599999999999,
+      "dram": 94080,
+      "macs": 0,
+      "cyc_compute": 0.0,
+      "cyc_mem": 2161.5999999999995,
+      "n": 9
+    },
+    "RMSNORM": {
+      "cycles": 248018.39999999997,
+      "dram": 3424512,
+      "macs": 1317120,
+      "cyc_compute": 8300.600000000062,
+      "cyc_mem": 78674.39999999997,
+      "n": 441
+    },
+    "GEMM4": {
+      "cycles": 42214828.80000024,
+      "dram": 1820344320,
+      "macs": 5367398400,
+      "cyc_compute": 8454158.399999876,
+      "cyc_mem": 41827756.80000025,
+      "n": 1512
+    },
+    "ROPE": {
+      "cycles": 102998.40000000037,
+      "dram": 1474560,
+      "macs": 1105920,
+      "cyc_compute": 4643.999999999997,
+      "cyc_mem": 33878.399999999725,
+      "n": 216
+    },
+    "KVAPPEND": {
+      "cycles": 43024.799999999996,
+      "dram": 368640,
+      "macs": 0,
+      "cyc_compute": 0.0,
+      "cyc_mem": 8464.8,
+      "n": 216
+    },
+    "ATTNGQA": {
+      "cycles": 278783.9999999993,
+      "dram": 2506752,
+      "macs": 6064128,
+      "cyc_compute": 9549.599999999959,
+      "cyc_mem": 57600.000000000124,
+      "n": 216
+    },
+    "ADD": {
+      "cycles": 841924.8000000063,
+      "dram": 34836480,
+      "macs": 5806080,
+      "cyc_compute": 73180.80000000013,
+      "cyc_mem": 800452.8000000062,
+      "n": 432
+    },
+    "SILUMUL": {
+      "cycles": 269061.6000000009,
+      "dram": 10506240,
+      "macs": 10506240,
+      "cyc_compute": 22065.59999999986,
+      "cyc_mem": 241413.60000000117,
+      "n": 216
+    },
+    "READBACK": {
+      "cycles": 258966.7000000001,
+      "dram": 9804288,
+      "macs": 0,
+      "cyc_compute": 0.0,
+      "cyc_mem": 0.0,
+      "n": 57
+    },
+    "LMHEAD": {
+      "cycles": 28362935.3,
+      "dram": 1234354944,
+      "macs": 2042019840,
+      "cyc_compute": 3216386.999999999,
+      "cyc_mem": 28362935.3,
+      "n": 9
+    },
+    "SAMPLE": {
+      "cycles": 125683.20000000001,
+      "dram": 5469732,
+      "macs": 0,
+      "cyc_compute": 0.0,
+      "cyc_mem": 125683.20000000001,
+      "n": 9
+    }
+  },
+  "op_count": 3333,
+  "kv_crossover_tokens_int8": 55146.354817708336,
+  "kv_table": [
+    [
+      512,
+      "6.00 MiB",
+      "3.00 MiB",
+      "1%",
+      "7.79",
+      "0.07",
+      "7.86"
+    ],
+    [
+      1024,
+      "12.00 MiB",
+      "6.00 MiB",
+      "2%",
+      "7.79",
+      "0.14",
+      "7.93"
+    ],
+    [
+      2048,
+      "24.00 MiB",
+      "12.00 MiB",
+      "4%",
+      "7.79",
+      "0.29",
+      "8.07"
+    ],
+    [
+      4096,
+      "48.00 MiB",
+      "24.00 MiB",
+      "7%",
+      "7.79",
+      "0.58",
+      "8.36"
+    ],
+    [
+      8192,
+      "96.00 MiB",
+      "48.00 MiB",
+      "15%",
+      "7.79",
+      "1.16",
+      "8.94"
+    ],
+    [
+      32768,
+      "384.00 MiB",
+      "192.00 MiB",
+      "59%",
+      "7.79",
+      "4.63",
+      "12.41"
+    ]
+  ],
+  "storage": {
+    "fp16": {
+      "variant": "fp16",
+      "desc": "全 fp16 权重 + fp16 激活 (硬件 fp16 档)",
+      "bytes": 987922432,
+      "bytes_mib": 942.2,
+      "compress_ratio": 1.0,
+      "logits_cosine": 0.999993,
+      "logits_kl": 6.5e-05,
+      "top1_agreement": 1.0,
+      "gen_token_match": 1.0,
+      "gen_first_token_match": 1,
+      "nll": 4.4196,
+      "nll_delta": 0.00146,
+      "text": " 我是一个AI助手，由阿里云开发，可以回答问题、提供",
+      "corpus_top1_agreement": 0.9865,
+      "corpus_logits_cosine": 0.99998
+    },
+    "w8a16_g128": {
+      "variant": "w8a16_g128",
+      "desc": "W8A16 g128 (精度上限对照)",
+      "bytes": 517115648,
+      "bytes_mib": 493.2,
+      "compress_ratio": 1.91,
+      "logits_cosine": 0.999432,
+      "logits_kl": 0.002953,
+      "top1_agreement": 0.8571,
+      "gen_token_match": 0.375,
+      "gen_first_token_match": 1,
+      "nll": 4.4217,
+      "nll_delta": 0.00353,
+      "text": " 我是一个人工智能助手，可以回答各种问题，提供信息和帮助用户",
+      "corpus_top1_agreement": 0.9865,
+      "corpus_logits_cosine": 0.998937
+    },
+    "w4a16_rtn_g128": {
+      "variant": "w4a16_rtn_g128",
+      "desc": "W4A16 RTN 非对称 g128, lm_head 留 fp16",
+      "bytes": 467955712,
+      "bytes_mib": 446.3,
+      "compress_ratio": 2.11,
+      "logits_cosine": 0.942823,
+      "logits_kl": 0.319781,
+      "top1_agreement": 0.7143,
+      "gen_token_match": 0.25,
+      "gen_first_token_match": 1,
+      "nll": 4.7715,
+      "nll_delta": 0.35338,
+      "text": " 我是一个人工智能模型，我被设计用来帮助用户解决问题和提供信息",
+      "corpus_top1_agreement": 0.5965,
+      "corpus_logits_cosine": 0.929946
+    },
+    "w4a16_rtn_mix8": {
+      "variant": "w4a16_rtn_mix8",
+      "desc": "W4A16 + lm_head int8 (混合精度)",
+      "bytes": 338202368,
+      "bytes_mib": 322.5,
+      "compress_ratio": 2.92,
+      "logits_cosine": 0.943227,
+      "logits_kl": 0.318247,
+      "top1_agreement": 0.7143,
+      "gen_token_match": 0.25,
+      "gen_first_token_match": 1,
+      "nll": 4.7777,
+      "nll_delta": 0.3596,
+      "text": " 我是一个人工智能模型，我被设计用来帮助用户解决问题和提供信息",
+      "corpus_top1_agreement": 0.6144,
+      "corpus_logits_cosine": 0.929952
+    },
+    "w4a16_awq_mix8": {
+      "variant": "w4a16_awq_mix8",
+      "desc": "W4A16 AWQ 缩放 + lm_head int8",
+      "bytes": 338693888,
+      "bytes_mib": 323.0,
+      "compress_ratio": 2.92,
+      "logits_cosine": 0.980592,
+      "logits_kl": 0.249079,
+      "top1_agreement": 0.7143,
+      "gen_token_match": 0.25,
+      "gen_first_token_match": 1,
+      "nll": 4.5304,
+      "nll_delta": 0.11227,
+      "text": " 我叫小明，今年15岁，我有一个梦想，那就是",
+      "corpus_top1_agreement": 0.7577,
+      "corpus_logits_cosine": 0.966764
+    },
+    "w4a16_gptq_mix8": {
+      "variant": "w4a16_gptq_mix8",
+      "desc": "W4A16 GPTQ (102/168 个矩阵) + lm_head int8",
+      "bytes": 338202368,
+      "bytes_mib": 322.5,
+      "compress_ratio": 2.92,
+      "logits_cosine": 0.965976,
+      "logits_kl": 0.30255,
+      "top1_agreement": 0.4286,
+      "gen_token_match": 0.0,
+      "gen_first_token_match": 0,
+      "nll": 4.813,
+      "nll_delta": 0.39492,
+      "text": " 你好，我是一个人工智能模型，由阿里云开发的超大规模预",
+      "corpus_top1_agreement": 0.6636,
+      "corpus_logits_cosine": 0.936333
+    }
+  },
+  "title": "S6 性能分析与瓶颈归因 (w4a16_rtn_mix8)",
+  "elapsed_s": 0.01
+}
