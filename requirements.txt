@@ -1,0 +1,11 @@
+# 运行 model2npu 需要的最小依赖 (aarch64 / x86_64 均可)
+numpy>=1.24
+torch>=2.1          # 只用于加载 safetensors / 参考实现, 不需要 GPU/NPU 版本
+tokenizers>=0.15    # 读 Qwen 的 tokenizer.json
+pillow>=10.0        # ViT 图片预处理
+
+# 可选: 真机 Ascend 链路 (CANN 自带, 不要用 pip 版覆盖)
+#   pyACL  -> 随 CANN 安装在 $ASCEND_HOME/python/site-packages (import acl)
+#   atc    -> CANN 的图编译器, 见 src/ascend_build_om.sh
+# 可选: 模型下载
+# huggingface_hub>=0.20
