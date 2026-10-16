@@ -1,0 +1,311 @@
+{
+  "summary": {
+    "n_error": 0,
+    "n_warn": 0,
+    "n_stale": 0,
+    "n_pass": 22,
+    "n_total": 22
+  },
+  "rules": [
+    {
+      "id": "ops.struct",
+      "stage": "S2",
+      "desc": "结构算子逐用例数值对齐 (Python↔C++↔torch)",
+      "severity": "error",
+      "evidence": "results/s2_ops_alignment.md",
+      "value": 12,
+      "limit": "全部用例 passed",
+      "ok": true
+    },
+    {
+      "id": "ops.struct.bit_exact",
+      "stage": "S2",
+      "desc": "位级用例 (fp16 舍入/边界/次正规) 逐 bit 一致率",
+      "severity": "error",
+      "evidence": "results/s2_ops_alignment.md",
+      "value": 100.0,
+      "limit": ">= 100.0",
+      "ok": true
+    },
+    {
+      "id": "ops.quant",
+      "stage": "S2",
+      "desc": "量化算子 (INT4/INT8 分组去量化) 数值对齐",
+      "severity": "error",
+      "evidence": "results/s2_ops_alignment.md",
+      "value": 13,
+      "limit": "全部 passed 且 max rel_err <= 1e-5",
+      "ok": true
+    },
+    {
+      "id": "quant.variants",
+      "stage": "S3",
+      "desc": "量化方案覆盖度 (含 AWQ / GPTQ / 混合精度)",
+      "severity": "error",
+      "evidence": "results/s3_quant.md",
+      "value": 6,
+      "limit": ">= 4 档且含 awq / gptq",
+      "ok": true
+    },
+    {
+      "id": "quant.gptq_gain",
+      "stage": "S3",
+      "desc": "GPTQ 相对同 group RTN 的层输出误差比 (全部矩阵应更优)",
+      "severity": "error",
+      "evidence": "results/s3_quant.md",
+      "value": 0.6795,
+      "limit": "全部更优, 中位 < 1.0",
+      "ok": true
+    },
+    {
+      "id": "quant.awq_gain",
+      "stage": "S3",
+      "desc": "AWQ 相对 RTN 的层输出误差比",
+      "severity": "warn",
+      "evidence": "results/s3_quant.md",
+      "value": 0.911,
+      "limit": "中位 < 1.0 且更优占比 >= 60%",
+      "ok": true
+    },
+    {
+      "id": "pack.bit_exact",
+      "stage": "S3b",
+      "desc": "硬件权重格式解包逐 bit 一致 (ISS dump vs 参考)",
+      "severity": "error",
+      "evidence": "results/s3_pack.md",
+      "value": 100.0,
+      "limit": ">= 100.0",
+      "ok": true
+    },
+    {
+      "id": "pack.image",
+      "stage": "S3b",
+      "desc": "设备镜像导出与元数据开销",
+      "severity": "error",
+      "evidence": "results/s3_pack.md",
+      "value": 327913472,
+      "limit": "元数据开销 < 10%",
+      "ok": true
+    },
+    {
+      "id": "e2e.logits_cosine_bc",
+      "stage": "S5",
+      "desc": "ISS vs 量化模拟 (prefill logits cosine)",
+      "severity": "error",
+      "evidence": "results/s5_e2e.md",
+      "value": 0.999987,
+      "limit": ">= 0.999",
+      "ok": true
+    },
+    {
+      "id": "e2e.gen_match_bc",
+      "stage": "S5",
+      "desc": "ISS 与量化模拟的生成 token 一致率",
+      "severity": "error",
+      "evidence": "results/s5_e2e.md",
+      "value": "8/8",
+      "limit": "全部一致",
+      "ok": true
+    },
+    {
+      "id": "e2e.logits_cosine_ab",
+      "stage": "S5",
+      "desc": "量化 vs fp32 参考 (logits cosine)",
+      "severity": "error",
+      "evidence": "results/s5_e2e.md",
+      "value": 0.9432267032831442,
+      "limit": ">= 0.9",
+      "ok": true
+    },
+    {
+      "id": "e2e.top1_ab",
+      "stage": "S5",
+      "desc": "量化 vs fp32 参考 (top-1 一致率)",
+      "severity": "warn",
+      "evidence": "results/s5_e2e.md",
+      "value": 0.7142857142857143,
+      "limit": ">= 0.6",
+      "ok": true
+    },
+    {
+      "id": "perf.ttft_ms",
+      "stage": "S6",
+      "desc": "首 token 延迟 TTFT",
+      "severity": "error",
+      "evidence": "results/s6_perf.md",
+      "value": 9.361977699999995,
+      "limit": "<= 50.0",
+      "ok": true
+    },
+    {
+      "id": "perf.tpot_ms",
+      "stage": "S6",
+      "desc": "单 token 延迟 TPOT",
+      "severity": "error",
+      "evidence": "results/s6_perf.md",
+      "value": 7.891218399999993,
+      "limit": "<= 15.0",
+      "ok": true
+    },
+    {
+      "id": "perf.dram_per_token",
+      "stage": "S6",
+      "desc": "decode 每 token DRAM 访存量 (瓶颈归因输入)",
+      "severity": "info",
+      "evidence": "results/s6_perf.md",
+      "value": 338819204.0,
+      "limit": "> 0",
+      "ok": true
+    },
+    {
+      "id": "regress.all_pass",
+      "stage": "S7",
+      "desc": "门禁回归明细 (gates 字典逐条)",
+      "severity": "error",
+      "evidence": "results/s7_regression.md",
+      "value": 0,
+      "limit": "== 0",
+      "ok": true
+    },
+    {
+      "id": "repeat.deterministic",
+      "stage": "S7",
+      "desc": "同一微码两次运行逐 bit 一致",
+      "severity": "error",
+      "evidence": "results/s7_regression.md",
+      "value": 1.0,
+      "limit": "== 1.0",
+      "ok": true
+    },
+    {
+      "id": "debug.localize",
+      "stage": "S7",
+      "desc": "故障注入能否定位到注入层 (跨层/跨算子定位能力)",
+      "severity": "error",
+      "evidence": "results/s7_regression.md",
+      "value": 3,
+      "limit": "全部定位正确",
+      "ok": true
+    },
+    {
+      "id": "vision.align",
+      "stage": "S8",
+      "desc": "视觉编码器 ISS vs 量化模拟 (logits cosine)",
+      "severity": "error",
+      "evidence": "results/s8_vision.md",
+      "value": 0.9822965818449859,
+      "limit": ">= 0.95",
+      "ok": true
+    },
+    {
+      "id": "vision.top1",
+      "stage": "S8",
+      "desc": "视觉编码器 top-1 与 fp32 参考一致",
+      "severity": "error",
+      "evidence": "results/s8_vision.md",
+      "value": true,
+      "limit": "== True",
+      "ok": true
+    },
+    {
+      "id": "vision.multimodal",
+      "stage": "S8",
+      "desc": "视觉 token 进 LLM: logits 健全性 + KV Cache 无越界",
+      "severity": "error",
+      "evidence": "results/s8_vision.md",
+      "value": 109056,
+      "limit": "全有限且序列长度/ KV 合理",
+      "ok": true
+    },
+    {
+      "id": "realhw.acl_exec",
+      "stage": "真机",
+      "desc": "真机 Ascend: .om 在设备上执行成功 (日志留证)",
+      "severity": "warn",
+      "evidence": "results/npu_real_hw.md",
+      "value": 1,
+      "limit": "存在真机执行日志",
+      "ok": true
+    }
+  ],
+  "freshness": [
+    {
+      "stage": "S1 模型分析与部署规划",
+      "result": "results/s1_model_analysis.json",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S2 算子适配与验证",
+      "result": "results/s2_ops_alignment.json",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S3 量化与精度优化",
+      "result": "results/s3_quant.json",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S3b 权重打包与镜像",
+      "result": "results/s3_pack.json",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S4a 微码生成",
+      "result": "build/npu_program_w4a16_rtn_mix8_kvfp16.mtx",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S4b ISS 可执行",
+      "result": "build/npu_iss",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S5 端到端集成与数值对齐",
+      "result": "results/s5_e2e.json",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S6 性能分析与瓶颈归因",
+      "result": "results/s6_perf.json",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S7 回归门禁与问题定位",
+      "result": "results/s7_regression.json",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S8 视觉编码器与多模态链路",
+      "result": "results/s8_vision.json",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    },
+    {
+      "stage": "S9 汇总报告",
+      "result": "results/SUMMARY.md",
+      "exists": true,
+      "stale_by": [],
+      "ok": true
+    }
+  ],
+  "generated": "2026-10-16 05:39:09"
+}
