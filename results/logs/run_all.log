@@ -1,0 +1,60 @@
+python : /usr/local/python3.11.15/bin/python
+variant: w4a16_rtn_mix8   gptq: sample   decode: 8
+
+
+==================== [00 环境检查] 05:29:33 ====================
+==================== [00 环境检查] 05:29:33 ====================
+ROOT /path/to/model2npu
+型号目录: qwen2.5-0.5b-instruct 存在
+权重: 942.32 MiB
+视觉编码器: 存在
+  OK   00 环境检查  (0 s)
+  OK   00 环境检查  (0 s)
+
+==================== [S1 模型分析/部署规划] 05:29:33 ====================
+{"params": {"embedding / lm_head (tied)": 136134656, "RMSNorm": 43904, "MLP (SwiGLU)": 313786368, "attention 投影": 44067840}}
+写入: /path/to/model2npu/results/s1_model_analysis.md
+  OK   S1 模型分析/部署规划  (3 s)
+
+==================== [S2 算子对齐 (含 C++ native)] 05:29:36 ====================
+  [build] s2_ops_native.cpp -> build/s2_ops_native
+算子对齐: 全绿
+  OK   S2 算子对齐 (含 C++ native)  (6 s)
+
+==================== [S4 编译 NPU ISS] 05:29:42 ====================
+  OK   S4 编译 NPU ISS  (5 s)
+
+==================== [S3 量化 (RTN/AWQ/GPTQ)] 05:29:47 ====================
+变体: fp16(942.2MiB,cos=0.999993), w8a16_g128(493.2MiB,cos=0.999432), w4a16_rtn_g128(446.3MiB,cos=0.942823), w4a16_rtn_mix8(322.5MiB,cos=0.943227), w4a16_awq_mix8(323.0MiB,cos=0.980592), w4a16_gptq_mix8(322.5MiB,cos=0.965976)
+  OK   S3 量化 (RTN/AWQ/GPTQ)  (380 s)
+
+==================== [S3b 设备镜像打包] 05:36:07 ====================
+设备镜像: 312.72 MiB -> /path/to/model2npu/build/npu_device_image.bin
+  OK   S3b 设备镜像打包  (5 s)
+
+==================== [S3b 权重格式 bit 级自检] 05:36:12 ====================
+{"dump_dequant":"build/deq","tensors":290,"bytes":327913472}
+  OK   S3b 权重格式 bit 级自检  (5 s)
+
+==================== [S5 端到端三端对齐] 05:36:17 ====================
+ISS: OK; A↔B cosine=0.943227
+  OK   S5 端到端三端对齐  (27 s)
+
+==================== [S6 性能分析与瓶颈归因] 05:36:44 ====================
+TTFT 9.36 ms, TPOT 7.89 ms (126.7 tok/s), decode 323.12 MiB/token
+  OK   S6 性能分析与瓶颈归因  (0 s)
+
+==================== [S8 ViT 视觉编码 + 视觉 token] 05:36:44 ====================
+缺图片 /path/to/model2npu/assets/demo.jpg (可从 04_推理框架与端侧部署/绿联_edge-infer/data/dog.jpg 拷一份)
+  FAIL S8 ViT 视觉编码 + 视觉 token  (见 results/logs/run_all.log)
+
+==================== [S7 回归门禁 + 故障定位] 05:36:47 ====================
+门禁: 11 PASS / 0 FAIL / 0 SKIP
+故障定位: rope_theta→L8(对), attn_scale→L8(对), quant_zp→L9(对)
+  OK   S7 回归门禁 + 故障定位  (29 s)
+
+==================== [S9 汇总报告] 05:37:16 ====================
+汇总写入 results/SUMMARY.md
+  OK   S9 汇总报告  (0 s)
+
+有步骤失败: S8 ViT 视觉编码 + 视觉 token   详见 results/logs/run_all.log
