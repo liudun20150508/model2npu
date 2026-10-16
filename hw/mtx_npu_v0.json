@@ -1,0 +1,17 @@
+{
+  "name": "MTX-NPU v0 (demo 假设档位)",
+  "note": "面向端侧大模型推理的 NPU 目标档位。数值是本 demo 的建模假设, 不是芯片实测; 报告里会显式区分实测与建模。",
+  "pe_array": {"rows": 32, "cols": 32, "mac_per_pe_per_cycle": 1},
+  "mac_per_cycle": 1024,
+  "freq_mhz": 1000,
+  "sram_kib": 1024,
+  "sram_usable_kib": 512,
+  "dram": {"type": "LPDDR5-6400 x64bit", "bandwidth_gbps": 51.2, "capacity_gib": 4},
+  "host_link": {"type": "PCIe Gen3 x4", "bandwidth_gbps": 3.94, "overhead_us": 20},
+  "efficiency": {"pe_util": 0.62, "dram_util": 0.85, "sram_util": 0.9, "pcie_util": 0.75},
+  "op_overhead_cycles": {
+    "GEMM4": 256, "GEMMF": 256, "RMSNORM": 384, "LAYERNORM": 512, "ROPE": 320,
+    "ATTNGQA": 1024, "SOFTMAX": 256, "SILUMUL": 128, "GELU": 192, "ADD": 96,
+    "KVAPPEND": 160, "EMBED": 256, "DMA": 64, "IM2COL": 512
+  }
+}
