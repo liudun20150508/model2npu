@@ -1,0 +1,208 @@
+{
+  "gen_match_bc": "8/8",
+  "npu_text": " 我是一个人工智能模型，我被设计",
+  "iss_summary": {
+    "cycles": 72750740.5,
+    "ms": 72.7507,
+    "macs": 7434217728,
+    "dram_bytes": 3113380260,
+    "pcie_bytes": 9804288,
+    "sram_peak_bytes": 286720,
+    "dram_used_bytes": 5783808,
+    "image_bytes": 327913472,
+    "kv_peak_bytes": 11776,
+    "wall_s": 2.229,
+    "n_ops": 3333,
+    "by_kind": {
+      "ADD": {
+        "cycles": 841942.6,
+        "cycles_mem": 800470.6,
+        "dram_bytes": 34836480,
+        "macs": 5806080,
+        "n": 432
+      },
+      "ATTNGQA": {
+        "cycles": 278784.0,
+        "cycles_mem": 57600.0,
+        "dram_bytes": 2506752,
+        "macs": 6064128,
+        "n": 216
+      },
+      "EMBED": {
+        "cycles": 4465.8,
+        "cycles_mem": 2161.8,
+        "dram_bytes": 94080,
+        "macs": 0,
+        "n": 9
+      },
+      "GEMM4": {
+        "cycles": 42214836.7,
+        "cycles_mem": 41827764.7,
+        "dram_bytes": 1820344320,
+        "macs": 5367398400,
+        "n": 1512
+      },
+      "KVAPPEND": {
+        "cycles": 43030.6,
+        "cycles_mem": 8470.6,
+        "dram_bytes": 368640,
+        "macs": 0,
+        "n": 216
+      },
+      "LMHEAD": {
+        "cycles": 28362935.3,
+        "cycles_mem": 28362935.3,
+        "dram_bytes": 1234354944,
+        "macs": 2042019840,
+        "n": 9
+      },
+      "READBACK": {
+        "cycles": 258968.0,
+        "cycles_mem": 0.0,
+        "dram_bytes": 9804288,
+        "macs": 0,
+        "n": 57
+      },
+      "RMSNORM": {
+        "cycles": 248032.2,
+        "cycles_mem": 78688.2,
+        "dram_bytes": 3424512,
+        "macs": 1317120,
+        "n": 441
+      },
+      "ROPE": {
+        "cycles": 103002.4,
+        "cycles_mem": 33882.4,
+        "dram_bytes": 1474560,
+        "macs": 1105920,
+        "n": 216
+      },
+      "SAMPLE": {
+        "cycles": 125683.2,
+        "cycles_mem": 125683.2,
+        "dram_bytes": 5469732,
+        "macs": 0,
+        "n": 9
+      },
+      "SILUMUL": {
+        "cycles": 269059.8,
+        "cycles_mem": 241411.8,
+        "dram_bytes": 10506240,
+        "macs": 10506240,
+        "n": 216
+      }
+    }
+  },
+  "variant": "w4a16_rtn_mix8",
+  "step_metrics": [
+    {
+      "phase": "prefill",
+      "cos_b": 0.9999870843172664,
+      "cos_a": 0.9427990990678895,
+      "max_abs_b": 0.08393239974975586,
+      "argmax_match": true
+    },
+    {
+      "phase": "decode1",
+      "cos_b": 0.9999613685891052,
+      "cos_a": 0.8507435387579304,
+      "max_abs_b": 0.12924480438232422,
+      "argmax_match": true
+    },
+    {
+      "phase": "decode2",
+      "cos_b": 0.999986482264928,
+      "cos_a": 0.9554241587153441,
+      "max_abs_b": 0.0862879753112793,
+      "argmax_match": true
+    },
+    {
+      "phase": "decode3",
+      "cos_b": 0.9999943807375994,
+      "cos_a": 0.9523841327504676,
+      "max_abs_b": 0.06622123718261719,
+      "argmax_match": true
+    },
+    {
+      "phase": "decode4",
+      "cos_b": 0.9999966007626249,
+      "cos_a": 0.9203863906616897,
+      "max_abs_b": 0.04884648323059082,
+      "argmax_match": true
+    },
+    {
+      "phase": "decode5",
+      "cos_b": 0.999994005213381,
+      "cos_a": 0.9046286402763452,
+      "max_abs_b": 0.06349706649780273,
+      "argmax_match": true
+    },
+    {
+      "phase": "decode6",
+      "cos_b": 0.9999912787591976,
+      "cos_a": 0.9124824314356281,
+      "max_abs_b": 0.0680922269821167,
+      "argmax_match": true
+    },
+    {
+      "phase": "decode7",
+      "cos_b": 0.9999931978128656,
+      "cos_a": 0.5370663941469451,
+      "max_abs_b": 0.05660748481750488,
+      "argmax_match": true
+    },
+    {
+      "phase": "decode8",
+      "cos_b": 0.9999964978653147,
+      "cos_a": 0.6863407135690004,
+      "max_abs_b": 0.05847501754760742,
+      "argmax_match": true
+    }
+  ],
+  "prompt": "你好，请用一句话介绍你自己。",
+  "prompt_ids": [
+    108386,
+    37945,
+    11622,
+    105321,
+    100157,
+    107828,
+    1773
+  ],
+  "golden_tokens": [
+    49434,
+    239,
+    101909,
+    15469,
+    110498,
+    3837,
+    67071,
+    102661
+  ],
+  "quant_tokens": [
+    49434,
+    239,
+    101909,
+    104455,
+    104949,
+    3837,
+    35946,
+    99250
+  ],
+  "timings_s": {
+    "golden": 5.26,
+    "quant_sim": 5.63
+  },
+  "metrics_ab": {
+    "logits_cosine": 0.9432267032831442,
+    "logits_kl": 0.3182466938585588,
+    "top1_agreement": 0.7142857142857143,
+    "gen_token_match": 0.5
+  },
+  "metrics_bc": {
+    "logits_cosine_prefill": 0.999987,
+    "gen_match": "8/8"
+  },
+  "title": "S5 端到端集成与数值对齐 (w4a16_rtn_mix8, prefill=7, decode=8)",
+  "elapsed_s": 24.26
+}
