@@ -1,0 +1,11 @@
+{
+  "image": {
+    "path": "build/npu_device_image.bin",
+    "bytes": 327913472,
+    "tensors": 290,
+    "variant": "w4a16_rtn_mix8",
+    "metadata_overhead_ratio": 0.0401
+  },
+  "title": "S3b 硬件权重格式导出 (w4a16_rtn_mix8)",
+  "elapsed_s": 0.0
+}
