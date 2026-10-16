@@ -1,0 +1,1 @@
+变体: fp16(942.2MiB,cos=0.999993), w8a16_g128(493.2MiB,cos=0.999432), w4a16_rtn_g128(446.3MiB,cos=0.942823), w4a16_rtn_mix8(322.5MiB,cos=0.943227), w4a16_awq_mix8(323.0MiB,cos=0.980592), w4a16_gptq_mix8(322.5MiB,cos=0.941153)
