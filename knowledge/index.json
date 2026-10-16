@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "note": "知识库索引: 每条 = 一个可检索的经验条目。智能体先 kb_search 命中, 再 kb_get 取全文。",
+  "entries": [
+    {
+      "id": "align-first-divergence",
+      "title": "数值对不上时, 先找『逐层 cosine 第一次掉点』的那一层",
+      "tags": ["算子对齐", "定位", "cosine", "故障注入"],
+      "stage": ["S2", "S5", "S7"],
+      "file": "knowledge/kb_align_debug.md",
+      "symptoms": ["端到端 cosine 明显偏低", "top-1 漂移但数值看起来只差一点", "怀疑某个算子实现不一致"],
+      "verdict": "同一链路只在一层注入一类错误, 看逐层曲线第一次跳变的位置 = 问题算子所在层"
+    },
+    {
+      "id": "quant-bit-exact",
+      "title": "量化 cosine 0.9+ 不代表权重格式对: 必须做解包逐 bit 自检",
+      "tags": ["量化", "权重打包", "bit 级", "GPTQ", "AWQ", "分组量化"],
+      "stage": ["S2", "S3", "S3b"],
+      "file": "knowledge/kb_quant_and_pack.md",
+      "symptoms": ["cosine 还有 0.9 但 top-1 已经飘", "换了打包顺序结果变差一点"],
+      "verdict": "解包顺序/半字节高低位/zero-point 偏移错一位, cosine 看不出来, 但 top-1 会飘"
+    },
+    {
+      "id": "perf-attribution",
+      "title": "性能数字先分清算力 bound 还是访存 bound, 再动优化",
+      "tags": ["性能", "带宽", "roofline", "TTFT", "TPOT", "档位校准"],
+      "stage": ["S1", "S6"],
+      "file": "knowledge/kb_perf_attribution.md",
+      "symptoms": ["TTFT/TPOT 不达标", "不知道先优化哪个算子", "换了频率/带宽参数后结论大改"],
+      "verdict": "用 roofline 判 bound 类型; efficiency 因子未校准前, 性能数字只能当量级参考"
+    },
+    {
+      "id": "multimodal-kv",
+      "title": "多模态/长上下文问题多半出在 KV 布局与位置编码, 不在数值精度",
+      "tags": ["多模态", "视觉 token", "KV Cache", "长上下文", "连续 decode"],
+      "stage": ["S5", "S8"],
+      "file": "knowledge/kb_multimodal_kv.md",
+      "symptoms": ["prefill 正常但 decode 崩", "视觉 token 拼进去后结果异常", "长上下文精度崩"],
+      "verdict": "先查序列布局/位置 id/KV 写入位置, 再怀疑精度"
+    },
+    {
+      "id": "realhw-bringup",
+      "title": "真机 bring-up: 图编译 → 设备加载 → 执行 → 回传, 四段分开验",
+      "tags": ["真机", "Ascend", "ATC", "ACL", "om", "bring-up"],
+      "stage": ["真机"],
+      "file": "knowledge/kb_realhw_bringup.md",
+      "symptoms": ["模型转不动", "设备执行报错", "结果回传为空"],
+      "verdict": "先证明最小闭环通 (mobilenetv2 级), 再上大模型; 环境坑先于算法坑"
+    }
+  ]
+}
