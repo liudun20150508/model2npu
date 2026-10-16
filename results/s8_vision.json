@@ -1,0 +1,176 @@
+{
+  "fp32_top5": [
+    {
+      "label": "Samoyed, Samoyede",
+      "logit": 9.193604469299316
+    },
+    {
+      "label": "Pomeranian",
+      "logit": 6.932244300842285
+    },
+    {
+      "label": "West Highland white terrier",
+      "logit": 4.890868186950684
+    },
+    {
+      "label": "keeshond",
+      "logit": 4.734380722045898
+    },
+    {
+      "label": "papillon",
+      "logit": 4.712393760681152
+    }
+  ],
+  "iss_top5": [
+    {
+      "label": "Samoyed, Samoyede",
+      "logit": 8.0078125
+    },
+    {
+      "label": "Pomeranian",
+      "logit": 6.6171875
+    },
+    {
+      "label": "West Highland white terrier",
+      "logit": 5.52734375
+    },
+    {
+      "label": "papillon",
+      "logit": 4.76171875
+    },
+    {
+      "label": "Angora, Angora rabbit",
+      "logit": 4.52734375
+    }
+  ],
+  "iss_cos_vs_quant": 0.9822965818449859,
+  "iss_cos_vs_fp32": 0.8010983699306907,
+  "iss_top1_match": true,
+  "vit_profile_summary": {
+    "cycles": 2620712.4,
+    "ms": 2.6207,
+    "macs": 1309584192,
+    "dram_bytes": 45986592,
+    "pcie_bytes": 1995296,
+    "sram_peak_bytes": 1055232,
+    "dram_used_bytes": 5916768,
+    "image_bytes": 3938688,
+    "kv_peak_bytes": 151296,
+    "wall_s": 5.874,
+    "n_ops": 167,
+    "by_kind": {
+      "ADD": {
+        "cycles": 127456.9,
+        "cycles_mem": 125152.9,
+        "dram_bytes": 5446656,
+        "macs": 907776,
+        "n": 24
+      },
+      "ADDTAB": {
+        "cycles": 6952.9,
+        "cycles_mem": 6952.9,
+        "dram_bytes": 302592,
+        "macs": 0,
+        "n": 1
+      },
+      "ATTNGQA": {
+        "cycles": 293966.2,
+        "cycles_mem": 83435.3,
+        "dram_bytes": 3631104,
+        "macs": 178831872,
+        "n": 12
+      },
+      "GELU": {
+        "cycles": 169174.6,
+        "cycles_mem": 166870.6,
+        "dram_bytes": 7262208,
+        "macs": 14524416,
+        "n": 12
+      },
+      "GEMM4": {
+        "cycles": 1711384.8,
+        "cycles_mem": 463914.7,
+        "dram_bytes": 20189568,
+        "macs": 1074659328,
+        "n": 73
+      },
+      "HOST2DEV": {
+        "cycles": 19748.0,
+        "cycles_mem": 0.0,
+        "dram_bytes": 1130112,
+        "macs": 0,
+        "n": 2
+      },
+      "IM2COL": {
+        "cycles": 14347.3,
+        "cycles_mem": 13835.3,
+        "dram_bytes": 602112,
+        "macs": 0,
+        "n": 1
+      },
+      "KVAPPEND": {
+        "cycles": 85355.3,
+        "cycles_mem": 83435.3,
+        "dram_bytes": 3631104,
+        "macs": 0,
+        "n": 12
+      },
+      "LAYERNORM": {
+        "cycles": 100152.9,
+        "cycles_mem": 87352.9,
+        "dram_bytes": 3801600,
+        "macs": 2836800,
+        "n": 25
+      },
+      "LMHEAD": {
+        "cycles": 59576.6,
+        "cycles_mem": 25727.2,
+        "dram_bytes": 1119648,
+        "macs": 37824000,
+        "n": 1
+      },
+      "READBACK": {
+        "cycles": 32596.8,
+        "cycles_mem": 0.0,
+        "dram_bytes": 1241888,
+        "macs": 0,
+        "n": 4
+      }
+    }
+  },
+  "multimodal": {
+    "seq": 201,
+    "vision_tokens": 197,
+    "text_tokens": 4,
+    "kv_peak_bytes": 109056,
+    "phases": {
+      "prefill": {
+        "cycles": 165390869.70000008,
+        "dram_bytes": 2524714500
+      },
+      "init": {
+        "cycles": 3244786.8000000007,
+        "dram_bytes": 124587520
+      },
+      "decode1": {
+        "cycles": 9071594.799999986,
+        "dram_bytes": 390189188
+      },
+      "decode2": {
+        "cycles": 9071877.999999985,
+        "dram_bytes": 390201476
+      },
+      "decode3": {
+        "cycles": 9072161.199999988,
+        "dram_bytes": 390213764
+      },
+      "decode4": {
+        "cycles": 9072441.999999985,
+        "dram_bytes": 390226052
+      }
+    }
+  },
+  "multimodal_logits_finite": true,
+  "title": "S8 视觉编码器 (ViT/DeiT) + 视觉 token 多模态链路",
+  "elapsed_s": 96.47
+}
