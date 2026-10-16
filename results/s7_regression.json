@@ -1,0 +1,23 @@
+{
+  "repeat_cycles": [
+    72750740.5,
+    72750740.5
+  ],
+  "gates": {
+    "ops.op_alignment": 1.0,
+    "ops.quant_alignment": 1.0,
+    "pack.bit_exact": 100.0,
+    "e2e.logits_cosine_bc": 0.999987,
+    "e2e.decode_cosine_min": 0.9999613685891052,
+    "e2e.gen_match_bc": 1.0,
+    "e2e.logits_cosine_ab": 0.9432267032831442,
+    "e2e.top1_ab": 0.7142857142857143,
+    "perf.tpot_ms": 7.891218399999993,
+    "perf.ttft_ms": 9.361977699999995,
+    "repeat.deterministic": 1.0
+  },
+  "n_fail": 0,
+  "n_pass": 11,
+  "title": "S7 回归判据与问题定位 (w4a16_rtn_mix8)",
+  "elapsed_s": 25.83
+}
