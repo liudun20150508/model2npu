@@ -1,0 +1,14 @@
+# 大件产物: 由 run_all.sh / install.sh 重新生成, 不入库
+build/
+models/
+*.om
+*.pt
+*.bin
+*.onnx
+__pycache__/
+*.pyc
+
+# 保留 results/ 下的报告 (md/json/csv) 与运行日志 —— 它们是判据证据
+!results/logs/*.log
+models
+models/
